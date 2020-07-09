@@ -1,18 +1,17 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <Calendar></Calendar>
+    <!-- <Calendar></Calendar> -->
     <Calendarec></Calendarec>
   </div>
 </template>
 
 <script>
-import Calendar from '../components/Calendar';
+// import Calendar from '../components/Calendar';
 import Calendarec from '../components/calendar/index';
 
 export default {
   components: {
-    Calendar,
+    // Calendar,
     Calendarec
   },
 }
@@ -21,5 +20,6 @@ export default {
 <style lang="scss">
   .about {
     display: flex;
+    margin: 0 auto;
   }
 </style>
