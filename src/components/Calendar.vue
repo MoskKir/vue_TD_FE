@@ -49,18 +49,18 @@ export default {
     currentYear: new Date().getFullYear(),
     arrOfDays: [],
     arrOfMonths: [
-      "январь",
-      "февраль",
-      "март",
-      "апрель",
-      "май",
-      "июнь",
-      "июль",
-      "август",
-      "сентябрь",
-      "октябрь",
-      "ноябрь",
-      "декабрь"
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December'
     ],
     arrOfYears: [],
     currentMonthForSelect: 'мартобря',
@@ -68,11 +68,9 @@ export default {
   }),
   created: function() {
     this.getArrOfDays();
-    console.log(this.arrOfDays);
     let year = 1995;
     this.arrOfYears = Array(40).fill().map(() => year++);
     this.currentMonthForSelect = this.arrOfMonths[this.currentMonth];
-    console.log(this.currentMonth)
   },
   methods: {
     getArrOfDays() {
@@ -122,7 +120,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url(https://fonts.googleapis.com/css?family=Fjalla+One:400|Roboto:400,400italic,700);
 
 .jzdbox1 {
   width: 315px;
