@@ -1,5 +1,5 @@
 <template>
-    <div class="box box-text bgTable">
+    <div class="box box-text">
         
         <div class="view">
             <div class="date-navigation-row">
@@ -67,16 +67,14 @@ export default {
 }
 </script>
 
-<style lang="scss">
-    .bgTable {
-        box-sizing: border-box !important;
-        background: #ffffff;
+<style lang="scss" scope>
+
+    .calendar-days-container {
+        width: 100%;
     }
 
     .box {
         border-radius: 5px;
-        overflow: hidden;
-        display: block;
         margin-bottom: 10px;
         height: fit-content;
         margin: 0 auto;
@@ -96,10 +94,12 @@ export default {
     }
 
     .view {
+        display: grid;
         padding: 12px;
     }
 
     .date-navigation-row {
+        width: auto;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -108,13 +108,14 @@ export default {
     }
 
     .week-days {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        width: auto;
     }
 
     .day-label {
-        width: calc(100% / 7);
-        font-size: 10px;
-
+        margin: 0 auto;
+        font-size: 12px;
     }
 
     .is-monday-check {

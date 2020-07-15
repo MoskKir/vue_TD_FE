@@ -76,7 +76,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
   .main-calendar-container {
     width: 100vw;
@@ -87,7 +87,6 @@ export default {
     display: flex;
     margin: 10px auto;
     height: fit-content;
-    // height: calc(100vh - 10vh);
   }
 
   .switch {

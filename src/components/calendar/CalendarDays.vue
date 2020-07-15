@@ -128,12 +128,20 @@ export default {
         --day_width_var: 45;
     }
 
+    .calendar-days-container {
+        display: grid;
+    }
+
     .row-days {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        font-size: 10px;
     }
 
     .day {
+        margin: 0 auto;
         width: calc(100% / 7);
+        width: fit-content;
         min-width: calc(var(--day_width_var) * 1px);
         border-radius: 50%;
     }
@@ -153,9 +161,11 @@ export default {
     }
 
     button {
+        width: fit-content;
+        display: inline-block;
+        text-align: center;
         max-height: calc(var(--day_width_var) * 1px);
         padding: 10px;
-        width: 100%;
         border: none;
         border-radius: 50%;
         outline: 0;
