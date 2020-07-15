@@ -5,6 +5,7 @@
                 <button 
                     @click="day ? dayPicker(day) : null"
                     :class="[isToday(day) ? 'today' : null]"
+                    ref="index"
                 >{{ day }}</button>                
             </div>
         </div>
@@ -21,22 +22,30 @@ export default {
     ],
     data: () => ({
         calendarDaysArr: [[], [], [], [], [], []],
+        pickedDay: Date.now(),
+        pickedDayArr: (localStorage.pickedDayArr) ? JSON.parse(localStorage.pickedDayArr) : [],
     }),
     created: function() {
         this.getCalendarDaysArr();
     },
     watch: {
-        firstDay: function() {
+        firstDay() {
             this.calendarDaysArr = [[], [], [], [], [], []];
             this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
         },
-        selectedMonth: function() {
+        selectedMonth() {
             this.calendarDaysArr = [[], [], [], [], [], []];
             this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
         },
-        selectedYear: function() {
+        selectedYear() {
             this.calendarDaysArr = [[], [], [], [], [], []];
             this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
+        },
+        pickedDayArr() {
+            this.$emit('pickedDayArrEmit', this.pickedDayArr);
+        },
+        pickedDay() {
+            this.$emit('pickedDayEmit', this.pickedDay);
         }
     },
     methods: {
@@ -65,8 +74,49 @@ export default {
                 today.getFullYear() === this.selectedYear
             ) ? true : false
         },
-        dayPicker(selectDay) {
-            console.log('this is the day picker', selectDay)
+        dayPicker(selectDay) {            
+            const pickedDay = {
+                day: selectDay,
+                month: this.selectedMonth,
+                year: this.selectedYear
+            }
+            
+            console.log(pickedDay)
+
+            this.pickedDay = pickedDay
+
+            /*
+            
+                multi date select 'unnecessary feature'
+            
+            */
+            
+            // let tempArr = JSON.parse(JSON.stringify(this.pickedDayArr))
+            
+            // let newItem 
+
+            // if (tempArr.length) {
+            //     for (let i = 0; i < tempArr.length; i++) {
+            //         if (JSON.stringify(tempArr[i]) === JSON.stringify(pickedDay)) {
+            //             newItem = null
+            //             tempArr.splice(i, 1);
+            //             break;
+            //         } else {
+            //             newItem = pickedDay;
+            //         }
+            //     }
+            // } else {
+            //     newItem = pickedDay;
+            // }
+            // console.log(newItem)
+
+            // tempArr.push(newItem)
+
+            // tempArr = tempArr.filter(day => day !== null)
+
+            // this.pickedDayArr = tempArr
+
+            // localStorage.pickedDayArr = this.pickedDayArr
         }
     }
 

@@ -11,7 +11,7 @@
 export default {
     name: 'FirstDayOfWeek',
     data: () => ({
-        isMonday: false
+        isMonday: true
     }),
     watch: {
         isMonday: function(isMonday) {

@@ -1,0 +1,131 @@
+<template>
+  <div class="main-container">
+    <v-calendar
+        v-model="start"
+        :start="start"
+        :weekdays="weekday"
+        :type="isWeekView"
+        @click:date="contextMenuEvent($event)"
+        @click:day="contextMenuEvent($event)"
+        @contextmenu:day="contextMenuEvent($event)"
+        :events="events"
+        @click:event="showEvent"
+        
+      ></v-calendar>
+        {{ events }}
+       <!--  v-model="value"
+        :events="events"
+        :event-overlap-mode="mode"
+        :event-overlap-threshold="30"
+        :event-color="getEventColor"
+        @change="getEvents" -->
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  name: "EventCalendar",
+  props: [
+    'weekday',
+    'isWeekView',
+    'pickedDay',
+  ],
+  model: {
+      prop: 'pickedDay',
+      event: 'pickedDayIsPicked'
+  },
+  data: () => ({
+    events: [],
+    celebrationJSON: null,
+    start: '2019-3-1',
+    selectedEvent: {},
+    selectedElement: null,
+    selectedOpen: false,
+  }),
+  mounted() {
+    // console.log('mounted ', this.pickedDay)
+    axios
+      .get(`https://clients6.google.com/calendar/v3/calendars/ru.by%23holiday@group.v.calendar.google.com/events?calendarId=ru.by%23holiday%40group.v.calendar.google.com&singleEvents=true&timeZone=Europe%2FMinsk&maxAttendees=1&maxResults=250&sanitizeHtml=true&timeMin=2000-01-01T00%3A00%3A00%2B03%3A00&timeMax=2025-08-01T00%3A00%3A00%2B03%3A00&key=AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs`)
+      .then(response => {
+        console.log(response.data.items)
+        this.celebrationJSON = response.data.items;
+        this.getEventsForCalendar()
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  },
+  watch: {
+    start() {
+      console.log('from Event Calendar ', typeof this.start, this.start)
+      console.log('from Event Calendar ', typeof this.pickedDay, this.pickedDay)
+      // this.start = `${this.pickedDay.year}-${this.pickedDay.month}-${this.pickedDay.day}`
+    },
+    pickedDay() {
+      this.start = `${this.pickedDay.year}-${this.pickedDay.month}-${this.pickedDay.day}`
+    }
+  },
+  methods: {
+    contextMenuEvent(event) {
+      console.log('context menu')
+      console.log(event)
+      this.pickedDay = {
+        day: event.day,
+        month: event.month,
+        year: event.year  
+      }
+      this.start = `${this.pickedDay.year}-${this.pickedDay.month}-${this.pickedDay.day}`.toString()
+      this.$emit('pickedDayIsPicked', this.pickedDay);
+    },
+    getEventsForCalendar() {
+      this.celebrationJSON.forEach(value => {
+        this.events.push({
+          name: value.summary,
+          start: value.start.date,
+          end: value.start.date,
+          // end: value.end.date,
+          color: 'red',
+          timed: null
+        })
+      }) 
+
+      // {
+      //   name: this.names[this.rnd(0, this.names.length - 1)],
+      //   start: first,
+      //   end: second,
+      //   color: this.colors[this.rnd(0, this.colors.length - 1)],
+      //   timed: !allDay,
+      // }
+
+
+    },
+    showEvent ({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event
+        this.selectedElement = nativeEvent.target
+        setTimeout(() => this.selectedOpen = true, 10)
+      }
+
+      if (this.selectedOpen) {
+        this.selectedOpen = false
+        setTimeout(open, 10)
+      } else {
+        open()
+      }
+
+      nativeEvent.stopPropagation()
+    },
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+  .main-container {
+    margin: 0 10px;
+    margin-right: 0;
+    width: 100%;
+    height: 70vh;
+  }
+</style>

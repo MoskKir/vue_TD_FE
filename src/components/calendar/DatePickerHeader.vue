@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="header grey darken-4">
         <div>
             <button @click="selectedYear = --currentYear">
                 <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" 

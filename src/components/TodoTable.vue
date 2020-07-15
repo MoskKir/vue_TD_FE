@@ -28,7 +28,7 @@
             <v-spacer></v-spacer>
             <v-dialog v-model="dialog" max-width="500px">
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">New TODO</v-btn>
+                    <v-btn  dark class="mb-2" v-bind="attrs" v-on="on">New TODO</v-btn>
                 </template>
 
                 <v-card>
@@ -60,8 +60,8 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                    <v-btn color="blue darken-1" text @click="save(newTodo)">Save</v-btn>
+                    <v-btn color="grey darken-4" text @click="close">Cancel</v-btn>
+                    <v-btn color="grey darken-4" text @click="save(newTodo)">Save</v-btn>
                   </v-card-actions>
                 </v-card>
 
@@ -139,7 +139,6 @@ export default {
     save(item) {
       this.addNewTodo(item);
       this.dialog = false;
-      console.log(item)
     },
   }
 };

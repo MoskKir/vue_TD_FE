@@ -1,6 +1,7 @@
 <template>
     <v-row
     > 
+    
         <LoginForm></LoginForm>
         <SingupForm></SingupForm>
 
@@ -8,7 +9,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import LoginForm from '@/components/LoginForm.vue'
 import SingupForm from '@/components/SingupForm.vue'
 
