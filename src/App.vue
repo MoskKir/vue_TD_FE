@@ -93,37 +93,7 @@
       
       <v-spacer />
 
-        
-
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-
-      <!-- <v-card color="grey lighten-4" flat tile>
-        <v-toolbar dense>
-          <v-toolbar-title>Vue project</v-toolbar-title>
-          <template v-if="user">
-            <v-divider class="mx-4" inset vertical />
-            <router-link to="/todos">
-              <v-toolbar-items>
-                Todos
-              </v-toolbar-items>
-            </router-link>
-          </template>
-          <v-divider class="mx-4" inset vertical />
-          <router-link to="/datepicker">
-            <v-toolbar-items>
-              DatePicker
-            </v-toolbar-items>
-          </router-link>
-          <v-spacer></v-spacer>
-          <router-link to="/auth" v-if="!user">
-            <v-btn icon><v-icon>mdi-login-variant</v-icon> </v-btn>
-          </router-link>
-          <v-btn v-if="user" text @click="logout">
-            logout
-          </v-btn>
-        </v-toolbar>
-      </v-card> -->
 
     </v-app-bar>
 
@@ -132,7 +102,7 @@
     <v-main>
 
       <v-container
-        class="fill-height"
+        class="fill-height align-item-own"
         justify="center"
         fluid
       >
@@ -194,6 +164,10 @@
     text-decoration: none;
     color: inherit;
   }
+}
+
+.align-item-own {
+    align-items: normal !important;
 }
 
 </style>

@@ -12,7 +12,7 @@
         @click:event="showEvent"
         
       ></v-calendar>
-        {{ events }}
+        <!-- {{ events }} -->
        <!--  v-model="value"
         :events="events"
         :event-overlap-mode="mode"

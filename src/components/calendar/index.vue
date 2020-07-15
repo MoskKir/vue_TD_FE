@@ -74,18 +74,19 @@ export default {
     }
 
     .box {
-        width: 315px;
-        background: #332f2e1a;
         border-radius: 5px;
         overflow: hidden;
         display: block;
         margin-bottom: 10px;
+        height: fit-content;
         margin: 0 auto;
-        margin-top: 100px;
+        box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 
+                    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 
+                    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
     }
 
     .box-text {
-        font: 18px "Roboto";
+        font: 15px "Roboto";
         font-weight: 700;
         color: #000000;
         display: block;
@@ -95,7 +96,7 @@ export default {
     }
 
     .view {
-        padding: 16px;
+        padding: 12px;
     }
 
     .date-navigation-row {

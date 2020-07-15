@@ -86,7 +86,8 @@ export default {
   .calendar-container {
     display: flex;
     margin: 10px auto;
-    height: calc(100vh - 10vh);
+    height: fit-content;
+    // height: calc(100vh - 10vh);
   }
 
   .switch {
