@@ -1,8 +1,6 @@
 <template>
     <div class="box box-text bgTable">
         
-        <DatePickerHeader></DatePickerHeader>
-
         <div class="view">
             <div class="date-navigation-row">
 
@@ -21,41 +19,37 @@
                     :firstDay = isMonday 
                     :selectedMonth = selectedMonth
                     :selectedYear = selectedYear
+                    :pickedDayEmit ="pickedDay = $event"
                 ></CalendarDays>
                 
             </div>
-        </div>
-
-        <div class="is-monday-check">
-            first day of week
-            <FirstDayOfWeek v-on:emmitIsMonday="isMonday = $event"></FirstDayOfWeek>
-            isMonday {{ isMonday }}            
         </div>
 
     </div>
 </template>
 
 <script>
-import DatePickerHeader from './DatePickerHeader';
 import MonthPicker from './MonthPicker';
 import YearPicker from './YearPicker';
 import CalendarDays from './CalendarDays';
-import FirstDayOfWeek from './FirstDayOfWeek';
 
 export default {
     name:'Calendarec',
+    props: [
+        'isMonday'
+    ],
     components: {
-        DatePickerHeader,
         MonthPicker,
         YearPicker,
         CalendarDays,
-        FirstDayOfWeek
+    },
+    model: {
+        prop: 'pickedDay',
+        event: 'pickedDayIsPicked'
     },
     data: () => ({
-        weekDays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-        pickedDay: '',
-        pickedDays: [],
-        isMonday: false,
+        weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        pickedDay: null,
         selectedMonth: null,
         selectedYear: null
     }),
@@ -65,6 +59,11 @@ export default {
             else this.weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']          
         }
     },
+    methods: {
+        pickedDayIsPicked() {
+            this.$emit('pickedDayIsPicked', this.pickedDay)
+        }
+    }
 }
 </script>
 
@@ -72,7 +71,6 @@ export default {
     .bgTable {
         box-sizing: border-box !important;
         background: #ffffff;
-        background: linear-gradient(#00bbd438, #ffffff ) !important;
     }
 
     .box {
