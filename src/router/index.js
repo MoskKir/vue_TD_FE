@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Todos from '../views/Todos.vue';
-import Login from '../views/Login.vue';
+import Signin from '../views/Signin.vue';
+import Signup from '../views/Signup.vue';
 import Todoitem from '../views/Todoitem.vue';
 
 Vue.use(VueRouter)
@@ -13,9 +14,14 @@ Vue.use(VueRouter)
     component: Todos
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
+    path: '/auth/signin',
+    name: 'Signin',
+    component: Signin
+  },
+  {
+    path: '/auth/signup',
+    name: 'Signup',
+    component: Signup
   },
   {
     path: '/todo/:id',
@@ -26,10 +32,7 @@ Vue.use(VueRouter)
   {
     path: '/calendar',
     name: 'Calendar',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Calendar.vue')
+    component: () => import('../views/Calendar.vue')
   }
 ]
 

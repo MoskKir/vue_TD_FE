@@ -93,7 +93,29 @@
       
       <v-spacer />
 
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <div class="">
+        
+        <v-btn 
+          text
+          link
+          to='/auth/signin'
+        >
+          Sign in
+        </v-btn>
+
+        <!-- <v-list-item>
+          <v-list-item-avatar>
+            <img
+              :src="`https://randomuser.me/api/portraits/men/28.jpg`"
+              alt=""
+            >
+          </v-list-item-avatar>
+          <v-list-item-title> User name </v-list-item-title>
+        </v-list-item> -->
+      </div>
+
+
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon> -->
 
     </v-app-bar>
 
@@ -137,37 +159,41 @@
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
     color: #2c3e50;
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  #nav {
+    padding: 30px;
+
+    a {
+      font-weight: bold;
+      color: #2c3e50;
+
+      &.router-link-exact-active {
+        color: #42b983;
+      }
     }
   }
-}
 
-.nav-title {
-  width: 30%;
-  .router-link-title {
-    text-decoration: none;
-    color: inherit;
+  .nav-title {
+    width: 30%;
+    .router-link-title {
+      text-decoration: none;
+      color: inherit;
+    }
   }
-}
 
-.align-item-own {
-    align-items: normal !important;
-}
+  .align-item-own {
+      align-items: normal !important;
+  }
+
+  .v-list-item {
+    flex: none !important;
+  }
 
 </style>

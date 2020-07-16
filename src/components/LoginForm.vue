@@ -7,20 +7,22 @@
             ref="form" 
             class="login-form"    
         >
-            THis login form
+            <p>
+                Sign in
+            </p>
+
             <v-text-field
-                v-model="firstname"
-                :rules="nameRules"
-                :counter="10"
-                label="First name"
+                v-model="email"
+                :rules="emailRules"
+                label="Email"
                 required
             ></v-text-field>
 
                     
             <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
+                v-model="password"
+                :rules="passwordRules"
+                label="Password"
                 required
             ></v-text-field>
 
@@ -28,18 +30,11 @@
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
-                @click="login"
+                @click="signin"
             >
-                Log In
+                Sign in
             </v-btn>
 
-            <v-btn
-                color="error"
-                class="mr-4"
-                @click="reset"
-            >
-                Reset Form
-            </v-btn>
         </v-form>
         
     </v-col>
@@ -49,36 +44,41 @@
 <script>
   export default {
     name: 'LoginForm',
-
     data: () => ({
         valid: true,
-        firstname: '',
-        nameRules: [
-            v => !!v || 'Name is required',
-            v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-        ],
         email: '',
         emailRules: [
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+        ],
+        password: '',
+        passwordRules: [
+            v => !!v || 'Password is required',
+            v => /.+@.+\..+/.test(v) || 'Password must be valid',
         ],
     }),
     methods: {
       validate () {
         this.$refs.form.validate()
       },
-      login() {          
+      signin() {          
         console.log( this.firstname, this.email)
-      },
-      reset () {
-        this.$refs.form.reset()
       },
     },
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .login-form {
-        width: 50%;
+        width: 80%;
+        max-width: 400px;
     }
+
+    p {
+        text-align: left;
+        font-size: 25px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
 </style>
