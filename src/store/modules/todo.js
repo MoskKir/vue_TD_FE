@@ -2,13 +2,17 @@ import axios from "axios";
 
 export default {
     actions: {
-        async getRequestTodos(ctx) {
+        async getRequestTodos(ctx) {            
             try {
+                const user_id = this.getters.getUserId
+
                 const response = await axios.get("http://localhost:3003/api/todos/", { 
-                  params: {
-                      author_id: '1'
+                    params: {
+                        author_id: `${user_id}`
                     }
-                  });
+                });
+
+                console.log(response)
 
                 ctx.commit('updateTodos', response.data);
 

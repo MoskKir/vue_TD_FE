@@ -18,24 +18,16 @@
                 required
             ></v-text-field>
 
-                    
-            <!-- <v-text-field
-                v-model="password"
-                :rules="passwordRules"
-                label="Password"
-                required
-            ></v-text-field> -->
-
             <v-text-field
-              v-model="password"
-              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[passwordRules.required, passwordRules.min]"
-              :type="showPassword ? 'text' : 'password'"
-              name="input-10-1"
-              label="Password"
-              hint="At least 8 characters"
-              counter
-              @click:append="showPassword = !showPassword"
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[passwordRules.required, passwordRules.min]"
+                :type="showPassword ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password"
+                hint="At least 8 characters"
+                counter
+                @click:append="showPassword = !showPassword"
             ></v-text-field>
 
             <v-btn
@@ -54,8 +46,11 @@
 </template>
 
 <script>
-  export default {
-    name: 'LoginForm',
+// import router from "../router";
+import { mapActions } from "vuex";
+
+export default {
+    name: 'SigninForm',
     data: () => ({
         valid: true,
         email: '',
@@ -64,24 +59,31 @@
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
         password: '',
-        passwordRules: [
-            v => !!v || 'Password is required',
-            v => /.+@.+\..+/.test(v) || 'Password must be valid',
-        ],
+        passwordRules: {
+            required: value => !!value || 'Required.',
+            min: v => v.length >= 8 || 'Min 8 characters',
+        },
         showPassword: false,
     }),
     methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
-      signin() {          
-        console.log( this.firstname, this.email)
-      },
+        ...mapActions(['getUser']),
+        validate () {
+            this.$refs.form.validate()
+        },
+        signin() {   
+            const user = {
+                email: this.email,
+                password: this.password,
+            }
+
+            this.getUser(user)
+        },
     },
   }
 </script>
 
 <style lang="scss" scoped>
+
     .login-form {
         width: 80%;
         max-width: 400px;

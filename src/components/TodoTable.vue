@@ -132,13 +132,15 @@ export default {
     },
     deleteItem(item) {
       this.deleteTodo(item.todo_id);
+      this.getRequestTodos();
     },
     close() {
       this.dialog = false;
     },
-    save(item) {
-      this.addNewTodo(item);
+    async save(item) {
+      await this.addNewTodo(item);
       this.dialog = false;
+      await this.getRequestTodos();
     },
   }
 };

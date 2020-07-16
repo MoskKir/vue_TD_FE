@@ -3,8 +3,8 @@
       class="container"
     > 
       
-          <LoginForm></LoginForm>
-          <!-- <SingupForm></SingupForm> -->
+          <SigninForm></SigninForm>
+
           <br>
           <div class="description">
             <p>
@@ -18,23 +18,24 @@
             
           </div>
           <br>
+
     </div> 
 </template>
 
 <script>
-import LoginForm from '@/components/LoginForm.vue'
-// import SingupForm from '@/components/SingupForm.vue'
+import SigninForm from '@/components/SigninForm.vue';
 
 export default {
   name: 'Signin',
   components: {
-    LoginForm,
-    // SingupForm
+    SigninForm,
   }
 }
+
 </script>
 
 <style lang="scss" scoped>
+
   .container {
     margin-top: 50px;
     width: calc(100% - 40%);
@@ -48,8 +49,8 @@ export default {
   }
 
   p {
-    // width: 70%;
     margin: 0 auto;
     text-align: center;
   }
+
 </style>

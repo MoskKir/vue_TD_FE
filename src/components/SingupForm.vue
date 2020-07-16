@@ -49,11 +49,11 @@
                 :disabled="!valid"
                 color="success"
                 class="mr-4"
-                @click="login"
+                @click="signup"
             >
                 Get started
             </v-btn>
-            
+
         </v-form>
         
     </v-col>
@@ -61,7 +61,10 @@
 </template>
 
 <script>
-  export default {
+import router from "../router";
+import { mapActions } from "vuex";
+
+export default {
     name: 'SingupForm',
     data: () => ({
         valid: true,
@@ -84,17 +87,23 @@
     }),
 
     methods: {
-      validate () {
-        this.$refs.form.validate()
-      },
-      login() {          
-        console.log( this.firstname, this.email, this.password)
-      },
-      reset () {
-        this.$refs.form.reset()
-      },
+        ...mapActions(['addNewUser']),
+        validate () {
+            this.$refs.form.validate();
+        },
+        signup() {
+            const user = {
+                login: this.firstname,
+                email: this.email,
+                password: this.password
+            }
+
+            this.addNewUser(user);
+            
+            router.push({ path: '/auth/signin' });
+        },
     },
-  }
+}
 </script>
 
 <style lang="scss" scoped>
