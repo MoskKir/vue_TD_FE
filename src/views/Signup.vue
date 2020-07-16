@@ -1,16 +1,18 @@
 <template>
     <div
       class="container"
-    > 
-      
-          <LoginForm></LoginForm>
-          <!-- <SingupForm></SingupForm> -->
+    >
+          <!-- <LoginForm></LoginForm> -->
+          <SingupForm></SingupForm>
+
           <br>
           <div class="description">
             <p>
-              Don't have an account?
-              <a link to="/">
-                Sign up for TODO Aplication 
+              Already have an account?
+              <a>
+                <router-link to="/auth/signin">
+                  Sign in to TODO Aplication
+                </router-link>                 
               </a>
             </p>
             
@@ -20,14 +22,14 @@
 </template>
 
 <script>
-import LoginForm from '@/components/LoginForm.vue'
-// import SingupForm from '@/components/SingupForm.vue'
+// import LoginForm from '@/components/LoginForm.vue'
+import SingupForm from '@/components/SingupForm.vue'
 
 export default {
-  name: 'Signin',
+  name: 'Signup',
   components: {
-    LoginForm,
-    // SingupForm
+    // LoginForm,
+    SingupForm
   }
 }
 </script>

@@ -119,7 +119,7 @@ export default {
       description: ''
     }
   }),
-  async mounted() {
+  mounted() {
     this.getRequestTodos();
   },
   methods: {

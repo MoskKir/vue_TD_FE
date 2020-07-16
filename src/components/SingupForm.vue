@@ -7,7 +7,9 @@
             ref="form" 
             class="login-form"    
         >
-            THis SINGUP form
+            <p>
+                Create your TODO App account
+            </p>
             <v-text-field
                 v-model="firstname"
                 :rules="nameRules"
@@ -25,16 +27,23 @@
             ></v-text-field>
 
             <v-text-field
-              v-model="password"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[passwordRules.required, passwordRules.min]"
-              :type="show1 ? 'text' : 'password'"
-              name="input-10-1"
-              label="Normal with hint text"
-              hint="At least 8 characters"
-              counter
-              @click:append="show1 = !show1"
+                v-model="password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                :rules="[passwordRules.required, passwordRules.min]"
+                :type="showPassword ? 'text' : 'password'"
+                name="input-10-1"
+                label="Password"
+                hint="At least 8 characters"
+                counter
+                @click:append="showPassword = !showPassword"
             ></v-text-field>
+
+            <v-checkbox
+                :rules="[v => !!v || 'You must agree to continue!']"
+                label="Do you agree with my authoritarian rules?"
+                color="success"
+                required
+            ></v-checkbox>
 
             <v-btn
                 :disabled="!valid"
@@ -42,16 +51,9 @@
                 class="mr-4"
                 @click="login"
             >
-                Log In
+                Get started
             </v-btn>
-
-            <v-btn
-                color="error"
-                class="mr-4"
-                @click="reset"
-            >
-                Reset Form
-            </v-btn>
+            
         </v-form>
         
     </v-col>
@@ -73,12 +75,12 @@
             v => !!v || 'E-mail is required',
             v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
         ],
-        password: 'Password',
+        password: '',
         passwordRules: {
             required: value => !!value || 'Required.',
             min: v => v.length >= 8 || 'Min 8 characters',
         },
-        show1: false,
+        showPassword: false,
     }),
 
     methods: {
@@ -86,7 +88,7 @@
         this.$refs.form.validate()
       },
       login() {          
-        console.log( this.firstname, this.email)
+        console.log( this.firstname, this.email, this.password)
       },
       reset () {
         this.$refs.form.reset()
@@ -95,8 +97,18 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
     .login-form {
-        width: 50%;
+        width: 80%;
+        max-width: 400px;
     }
+
+    p {
+        text-align: left;
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
 </style>

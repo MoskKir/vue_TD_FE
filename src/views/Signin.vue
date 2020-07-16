@@ -9,8 +9,10 @@
           <div class="description">
             <p>
               Don't have an account?
-              <a link to="/">
-                Sign up for TODO Aplication 
+              <a>
+                <router-link to="/auth/signup">
+                  Sign up for TODO Aplication
+                </router-link>                 
               </a>
             </p>
             
