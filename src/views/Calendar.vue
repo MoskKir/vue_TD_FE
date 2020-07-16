@@ -23,12 +23,14 @@
       </v-card-actions>
     </v-card>
 
+    {{ pickedDay }}
+
     <div class="calendar-container">
 
-      <Calendarec
+      <DatePicker
         v-model="pickedDay"
         :isMonday="isMonday"
-      ></Calendarec>
+      ></DatePicker>
       
       <EventCalendar
         v-model="pickedDay"
@@ -42,32 +44,32 @@
 </template>
 
 <script>
-import Calendarec from '../components/calendar/index';
+import DatePicker from '../components/calendar/index';
 import EventCalendar from '../components/EventCalendar';
 
 export default {
+
   components: {
-    Calendarec,
+    DatePicker,
     EventCalendar
   },
   data: () => ({
-    pickedDay: null,
     isMonday: true,
     weekday: [1, 2, 3, 4, 5, 6, 0],
     isWeekView: false,
     view: 'month',
+    pickedDay: null,
   }),
-
   watch: {
     pickedDay() {
       console.log('from calendar ',this.pickedDay)
     },
-    isMonday: function() {
+    isMonday() {
         (!this.isMonday) 
         ? this.weekday = [0, 1, 2, 3, 4, 5, 6]
         : this.weekday = [1, 2, 3, 4, 5, 6, 0]
     },
-    isWeekView: function() {
+    isWeekView() {
         this.view = (this.isWeekView) ? 'week' : 'month' 
     }
   },

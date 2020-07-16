@@ -19,12 +19,11 @@
                     :firstDay = isMonday 
                     :selectedMonth = selectedMonth
                     :selectedYear = selectedYear
-                    :pickedDayEmit ="pickedDay = $event"
+                    @pickedDayEmit ="pickedDayIsPicked"
                 ></CalendarDays>
                 
             </div>
         </div>
-
     </div>
 </template>
 
@@ -34,9 +33,9 @@ import YearPicker from './YearPicker';
 import CalendarDays from './CalendarDays';
 
 export default {
-    name:'Calendarec',
+    name:'DatePicker',
     props: [
-        'isMonday'
+        'isMonday',
     ],
     components: {
         MonthPicker,
@@ -49,19 +48,27 @@ export default {
     },
     data: () => ({
         weekDays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        pickedDay: null,
+        pickedDay: new Date,
         selectedMonth: null,
         selectedYear: null
     }),
+    created() {
+        console.log(this.pickedDay)
+
+    },
     watch: {
-        isMonday: function() {
+        isMonday() {
             if (this.weekDays[0] !== 'Mon') this.weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
             else this.weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']          
-        }
+        },
+        pickedDay() {
+            console.log(this.pickedDay)     
+        },
     },
     methods: {
-        pickedDayIsPicked() {
-            this.$emit('pickedDayIsPicked', this.pickedDay)
+        pickedDayIsPicked(data) {
+            console.log(data)
+            this.$emit('pickedDayIsPicked', data)
         }
     }
 }

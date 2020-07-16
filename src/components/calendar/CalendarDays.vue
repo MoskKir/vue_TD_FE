@@ -8,7 +8,7 @@
                     ref="index"
                 >{{ day }}</button>                
             </div>
-        </div>
+        </div>     
     </div>
 </template>
 
@@ -22,28 +22,25 @@ export default {
     ],
     data: () => ({
         calendarDaysArr: [[], [], [], [], [], []],
-        pickedDay: Date.now(),
-        pickedDayArr: (localStorage.pickedDayArr) ? JSON.parse(localStorage.pickedDayArr) : [],
+        pickedDay: new Date,
+        // pickedDayArr: (localStorage.pickedDayArr) ? JSON.parse(localStorage.pickedDayArr) : [],
     }),
-    created: function() {
+    created() {
         this.getCalendarDaysArr();
     },
     watch: {
         firstDay() {
-            this.calendarDaysArr = [[], [], [], [], [], []];
-            this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
+            this.updateUI()
         },
         selectedMonth() {
-            this.calendarDaysArr = [[], [], [], [], [], []];
-            this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
+            this.updateUI()
         },
         selectedYear() {
-            this.calendarDaysArr = [[], [], [], [], [], []];
-            this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
+            this.updateUI()
         },
-        pickedDayArr() {
-            this.$emit('pickedDayArrEmit', this.pickedDayArr);
-        },
+        // pickedDayArr() {
+        //     this.$emit('pickedDayArrEmit', this.pickedDayArr);
+        // },
         pickedDay() {
             this.$emit('pickedDayEmit', this.pickedDay);
         }
@@ -74,49 +71,49 @@ export default {
                 today.getFullYear() === this.selectedYear
             ) ? true : false
         },
+        updateUI() {
+            this.calendarDaysArr = [[], [], [], [], [], []];
+            this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
+            this.dayPicker(this.firstDay);
+        },
         dayPicker(selectDay) {            
             const pickedDay = {
                 day: selectDay,
                 month: this.selectedMonth,
                 year: this.selectedYear
             }
-            
-            console.log(pickedDay)
 
-            this.pickedDay = pickedDay
+            const dateObj = new Date(pickedDay.year, pickedDay.month - 1, pickedDay.day);
+
+            this.pickedDay = dateObj
 
             /*
+            ------------    multi date select 'unnecessary feature'    ------------          
             
-                multi date select 'unnecessary feature'
             
+            let tempArr = JSON.parse(JSON.stringify(this.pickedDayArr))
+            
+            let newItem 
+
+            if (tempArr.length) {
+                for (let i = 0; i < tempArr.length; i++) {
+                    if (JSON.stringify(tempArr[i]) === JSON.stringify(pickedDay)) {
+                        newItem = null
+                        tempArr.splice(i, 1);
+                        break;
+                    } else {
+                        newItem = pickedDay;
+                    }
+                }
+            } else {
+                newItem = pickedDay;
+            }
+            tempArr.push(newItem)
+            tempArr = tempArr.filter(day => day !== null)
+            this.pickedDayArr = tempArr
+            localStorage.pickedDayArr = this.pickedDayArr
+
             */
-            
-            // let tempArr = JSON.parse(JSON.stringify(this.pickedDayArr))
-            
-            // let newItem 
-
-            // if (tempArr.length) {
-            //     for (let i = 0; i < tempArr.length; i++) {
-            //         if (JSON.stringify(tempArr[i]) === JSON.stringify(pickedDay)) {
-            //             newItem = null
-            //             tempArr.splice(i, 1);
-            //             break;
-            //         } else {
-            //             newItem = pickedDay;
-            //         }
-            //     }
-            // } else {
-            //     newItem = pickedDay;
-            // }
-            // console.log(newItem)
-
-            // tempArr.push(newItem)
-
-            // tempArr = tempArr.filter(day => day !== null)
-
-            // this.pickedDayArr = tempArr
-
-            // localStorage.pickedDayArr = this.pickedDayArr
         }
     }
 
@@ -140,14 +137,16 @@ export default {
 
     .day {
         margin: 0 auto;
-        width: calc(100% / 7);
-        width: fit-content;
-        min-width: calc(var(--day_width_var) * 1px);
+        width: 100%;
         border-radius: 50%;
     }
 
+    .celebration {
+        color: #ff0000;
+    }
+
     .day:hover {
-        background-color: #6156a07a;
+        background-color: #1976d26e;
     }
 
     .emptyDay {
@@ -172,7 +171,7 @@ export default {
     }
 
     .today {
-        box-shadow: 0 0 0 1px rgba(35, 5, 143, 0.678);
+        box-shadow: 0 0 0 1px #1976d2;
     }
 
 </style>
