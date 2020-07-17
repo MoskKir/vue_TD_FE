@@ -30,6 +30,7 @@
       <DatePicker
         v-model="pickedDay"
         :isMonday="isMonday"
+        @pickedDayFromDatePicker="openDialog"
       ></DatePicker>
       
       <EventCalendar
@@ -50,7 +51,7 @@
       <v-card>
         <v-card-title>
           <span class="headline">Заголовок</span>
-          {{ pickedDay }}
+          <!-- {{ pickedDay }} -->
         </v-card-title>
 
         <v-card-text>
@@ -114,7 +115,7 @@ export default {
   watch: {
     pickedDay() {
       console.log('from calendar ',this.pickedDay)
-      this.showEventModalCard = true;
+      
       
     },
     isMonday() {
@@ -136,6 +137,10 @@ export default {
       }
       console.log('new evant ', this.newEvent)
       this.showEventModalCard = false;
+    },
+    openDialog() {
+      console.log('dialog event')
+      this.showEventModalCard = true;
     }
   }
 }

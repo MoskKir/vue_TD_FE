@@ -20,6 +20,7 @@
                     :selectedMonth = selectedMonth
                     :selectedYear = selectedYear
                     @pickedDayEmit ="pickedDayIsPicked"
+                    @pickedDayFromTableEmit="pickedDayFromDatePicker"
                 ></CalendarDays>
                 
             </div>
@@ -67,8 +68,15 @@ export default {
     },
     methods: {
         pickedDayIsPicked(data) {
+            console.log('pickedDayIsPicked')
             console.log(data)
             this.$emit('pickedDayIsPicked', data)
+            
+        },
+        pickedDayFromDatePicker(data) {
+            console.log('pickedDayFromDatePicker')
+            const cc = 'custom event emit' + data
+            this.$emit('pickedDayFromDatePicker', cc)
         }
     }
 }

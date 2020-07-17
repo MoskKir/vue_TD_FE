@@ -125,7 +125,6 @@ export default {
           name: 'value.summary',
           start: this.newEvent.start,
           end: this.newEvent.start,
-          // end: value.end.date,
           color: 'red',
           timed: null
         })

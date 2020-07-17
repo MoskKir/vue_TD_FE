@@ -3,7 +3,7 @@
         <div class="row-days" v-for="(week, index) of calendarDaysArr" :key="index">
             <div :class="[day ? 'day' : 'emptyDay']" v-for="day of week" :key="day">
                 <button 
-                    @click="day ? dayPicker(day) : null"
+                    @click="day ? branchDayPicker(day) : null"
                     :class="[isToday(day) ? 'today' : null]"
                     ref="index"
                 >{{ day }}</button>                
@@ -76,6 +76,19 @@ export default {
             this.getCalendarDaysArr(this.firstDay, this.selectedMonth, this.selectedYear);
             this.dayPicker(this.firstDay);
         },
+        branchDayPicker(selectDay) {
+            const pickedDay = {
+                day: selectDay,
+                month: this.selectedMonth,
+                year: this.selectedYear
+            }
+
+            const dateObj = new Date(pickedDay.year, pickedDay.month - 1, pickedDay.day);
+
+            this.pickedDay = dateObj
+
+            this.$emit('pickedDayFromTableEmit', this.pickedDay);
+        },
         dayPicker(selectDay) {            
             const pickedDay = {
                 day: selectDay,
@@ -86,6 +99,8 @@ export default {
             const dateObj = new Date(pickedDay.year, pickedDay.month - 1, pickedDay.day);
 
             this.pickedDay = dateObj
+
+            this.$emit('pickedDayEmit', this.pickedDay);
 
             /*
             ------------    multi date select 'unnecessary feature'    ------------          
