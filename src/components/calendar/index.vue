@@ -53,10 +53,6 @@ export default {
         selectedMonth: null,
         selectedYear: null
     }),
-    created() {
-        console.log(this.pickedDay)
-
-    },
     watch: {
         isMonday() {
             if (this.weekDays[0] !== 'Mon') this.weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -70,6 +66,7 @@ export default {
         pickedDayIsPicked(data) {
             console.log('pickedDayIsPicked')
             console.log(data)
+            console.log(this.selectedYear, this.selectedMonth, this.pickedDay)
             this.$emit('pickedDayIsPicked', data)
             
         },

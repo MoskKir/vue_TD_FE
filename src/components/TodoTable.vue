@@ -38,6 +38,15 @@
 
                   <v-card-text>
                     <v-container>
+
+                      {{ pickedDay }}
+                      <DatePicker
+                        class="date-picker"
+                        v-model="pickedDay"
+                        @pickedDayFromDatePicker="openDialog"
+                      ></DatePicker>
+                      
+
                       <v-row>
                         <v-col cols="12" sm="6" md="4">
                           <v-checkbox
@@ -97,11 +106,15 @@
 </template>
 
 <script>
-import router from "../router";
-import { mapGetters, mapActions } from "vuex";
+import router from '../router';
+import { mapGetters, mapActions } from 'vuex';
+import DatePicker from './calendar/index';
 
 export default {
   name: "TodoTable",
+  components: {
+    DatePicker
+  },
   computed: mapGetters(['allTodos']),
   data: () => ({
     dialog: false,
@@ -117,7 +130,8 @@ export default {
       status: false,
       title: '',
       description: ''
-    }
+    },
+    pickedDay: null,
   }),
   mounted() {
     this.getRequestTodos();
@@ -142,15 +156,25 @@ export default {
       this.dialog = false;
       await this.getRequestTodos();
     },
+    openDialog() {
+      console.log('ooooooooooooooooooooooooooooo')
+    }
   }
 };
 </script>
 
 <style lang="scss">
+  
   .title-btn {
     cursor: pointer;
   }
+  
   .test {
     display: flex;
   }
+
+  .date-picker {
+    max-width: 260px;
+  }
+
 </style>

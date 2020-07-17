@@ -61,8 +61,6 @@ export default {
     button {
         outline: 0;
         border-radius: 50%;
-        width: 27px;
-        height: 27px;
     }
 
     .picker-btn:hover {

@@ -50,14 +50,14 @@
     >
       <v-card>
         <v-card-title>
-          <span class="headline">Заголовок</span>
-          <!-- {{ pickedDay }} -->
+          <span class="headline">Add new event</span>
         </v-card-title>
 
         <v-card-text>
+          {{ pickedDay }}
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="3" md="4">
                 <v-checkbox
                   label="Status"
                   color="success"
@@ -65,17 +65,45 @@
                   hide-details
                 ></v-checkbox>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="9" md="4">
                 <v-text-field label="Title" ></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
+              
                 <v-text-field label="Description" ></v-text-field>
+            </v-row>
+
+            <v-row>
+              <v-col>
+                <v-checkbox
+        
+                      label="Every day"
+                      color="success"
+                ></v-checkbox>
+              </v-col>
+              <v-col>
+                <v-checkbox
+              
+                      label="Every week"
+                      color="success"
+                ></v-checkbox>
+              </v-col>
+              <v-col>
+                <v-checkbox
+              
+                      label="Every month"
+                      color="success"
+                ></v-checkbox>
               </v-col>
             </v-row>
+
           </v-container>
         </v-card-text>
 
+        <!-- (ежедневно/еженедельно/ежемесячно) в рамках года хранить в базе -->
+
         <v-card-actions>
+          
+
           <v-spacer></v-spacer>
           <v-btn color="grey darken-4" text @click="showEventModalCard = false">Cancel</v-btn>
           <v-btn color="grey darken-4" text @click="saveEvent">Save</v-btn>
