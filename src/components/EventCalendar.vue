@@ -77,6 +77,7 @@ export default {
     'weekday',
     'isWeekView',
     'pickedDay',
+    'newEvent',
   ],
   model: {
       prop: 'pickedDay',
@@ -111,13 +112,23 @@ export default {
   },
   watch: {
     start() {
-      console.log('from Event Calendar START ', typeof this.start, this.start)
-      console.log('from Event Calendar PICKED DAY ', typeof this.pickedDay, this.pickedDay)
+      // console.log('from Event Calendar START ', typeof this.start, this.start)
+      // console.log('from Event Calendar PICKED DAY ', typeof this.pickedDay, this.pickedDay)
       // this.start = `${this.pickedDay.year}-${this.pickedDay.month}-${this.pickedDay.day}`
     },
     pickedDay() {
       console.log('AAA ', this.pickedDay)
       this.start = `${this.pickedDay.getFullYear()}-${this.pickedDay.getMonth() + 1}-${this.pickedDay.getDate()}`
+    },
+    newEvent() {
+      this.events.push({
+          name: 'value.summary',
+          start: this.newEvent.start,
+          end: this.newEvent.start,
+          // end: value.end.date,
+          color: 'red',
+          timed: null
+        })
     }
   },
   methods: {

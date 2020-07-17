@@ -36,9 +36,55 @@
         v-model="pickedDay"
         :weekday="weekday"
         :isWeekView="view"
+        :newEvent="newEvent"
       ></EventCalendar>
 
     </div>
+
+    <!--                                            dialog                                       -->
+
+    <v-dialog 
+      max-width="500px"
+      v-model="showEventModalCard"  
+    >
+      <v-card>
+        <v-card-title>
+          <span class="headline">Заголовок</span>
+          {{ pickedDay }}
+        </v-card-title>
+
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="6" md="4">
+                <v-checkbox
+                  label="Status"
+                  color="success"
+                  value="success"
+                  hide-details
+                ></v-checkbox>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field label="Title" ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field label="Description" ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="grey darken-4" text @click="showEventModalCard = false">Cancel</v-btn>
+          <v-btn color="grey darken-4" text @click="saveEvent">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+
+  </v-dialog>
+
+
+
 
   </div>
 </template>
@@ -48,7 +94,6 @@ import DatePicker from '../components/calendar/index';
 import EventCalendar from '../components/EventCalendar';
 
 export default {
-
   components: {
     DatePicker,
     EventCalendar
@@ -59,10 +104,18 @@ export default {
     isWeekView: false,
     view: 'month',
     pickedDay: null,
+    showEventModalCard: false,
+    newEvent: {
+      title: 'new event title lorem',
+      start: null,
+      end: null,
+    }
   }),
   watch: {
     pickedDay() {
       console.log('from calendar ',this.pickedDay)
+      this.showEventModalCard = true;
+      
     },
     isMonday() {
         (!this.isMonday) 
@@ -74,6 +127,16 @@ export default {
     }
   },
   methods: {
+    saveEvent() {
+      
+      this.newEvent = {
+        title: 'new event title lorem',
+        start: this.pickedDay,
+        end: this.pickedDay,
+      }
+      console.log('new evant ', this.newEvent)
+      this.showEventModalCard = false;
+    }
   }
 }
 </script>

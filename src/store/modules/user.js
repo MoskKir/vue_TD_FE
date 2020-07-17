@@ -19,11 +19,7 @@ export default {
                     email: user.email,
                     password: user.password,
                 });
-
-                console.log(response)
-
                 
-
                 ctx.commit('updateUser', response.data.userData);
                 ctx.commit('updateToken', response.data.token);
 

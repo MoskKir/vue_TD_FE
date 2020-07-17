@@ -22,8 +22,10 @@ export default {
         },
         async addNewTodo(ctx, newTodo) {
             try {
+                const user_id = this.getters.getUserId
+
                 await axios.post("http://localhost:3003/api/todos/", {
-                    author_id: 1,
+                    author_id: user_id,
                     title: newTodo.title,
                     description: newTodo.description,
                     status: newTodo.status
