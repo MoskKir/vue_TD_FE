@@ -1,0 +1,55 @@
+{
+    "metadata": {
+        "version": 4.5,
+        "type": "Object",
+        "generator": "Object3D.toJSON"
+    },
+    "object": {
+        "uuid": "F7A6B274-04AD-47BC-A6BB-4A7B8B758902",
+        "type": "PerspectiveCamera",
+        "layers": 1,
+        "matrix": [
+            0.7501783793894586,
+            0,
+            0.6612355095551096,
+            0,
+            0.31412612318486466,
+            0.8799537470773581,
+            -0.3563792667052393,
+            0,
+            -0.5818566643336248,
+            0.47505936787365516,
+            0.6601222759201741,
+            0,
+            -3.675119865774966,
+            -5.733850526382764,
+            5.017270252439447,
+            1
+        ],
+        "fov": 40,
+        "zoom": 1,
+        "near": 0.1,
+        "far": 1000,
+        "focus": 10,
+        "aspect": 1.272145144076841,
+        "filmGauge": 35,
+        "filmOffset": 0
+    }
+}
+
+
+//First position
+
+// camera.position  Vector3 {x: -2.7345168500354404, y: -6.1860652290061715, z: 2.67508358223865}
+// camera.quaternion  Quaternion {_x: -0.08442714379718891, _y: 0.9108118758103985, _z: -0.23282079845992093, _w: -0.33028511937033583, _onChangeCallback: ƒ}
+// camera.rotation  Euler {_x: 2.522452142826561, _y: -0.5972158480512417, _z: 2.760455307569657, _order: "XYZ", _onChangeCallback: ƒ}
+// camera.scale  Vector3 {x: 1, y: 1, z: 1}
+// camera.up  Vector3 {x: 0, y: 1, z: 0}
+
+// My position
+
+// camera.position  Vector3 {x: -3.315410069327821, y: -7.0384729780032975, z: 4.258302799165038}
+// camera.quaternion  Quaternion {_x: -0.11799903661847104, _y: -0.2844143982883737, _z: -0.035298850067878695, _w: 0.950756892474233, _onChangeCallback: ƒ}
+// camera.rotation  Euler {_x: -0.2929787820187084, _y: -0.5615365714920308, _z: -0.15926949045526353, _order: "XYZ", _onChangeCallback: ƒ}
+// camera.scale  Vector3 {x: 1, y: 1, z: 1}
+// camera.up  Vector3 {x: 0, y: 1, z: 0}

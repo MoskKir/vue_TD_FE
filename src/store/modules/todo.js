@@ -4,7 +4,7 @@ export default {
     actions: {
         async getRequestTodos(ctx) {            
             try {
-                const user_id = this.getters.getUserId
+                const user_id = this.getters.getUserId 
 
                 const response = await axios.get("http://localhost:3003/api/todos/", { 
                     params: {
@@ -16,6 +16,16 @@ export default {
 
                 ctx.commit('updateTodos', response.data);
 
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        async getTodo(ctx, todo_id) {
+            try {
+                const response = await axios.get(`http://localhost:3003/api/todos/${todo_id}`);
+
+                const data = response.data
+                return data; 
             } catch (error) {
                 console.error(error);
             }

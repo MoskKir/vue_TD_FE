@@ -4,6 +4,7 @@ import Todos from '../views/Todos.vue';
 import Signin from '../views/Signin.vue';
 import Signup from '../views/Signup.vue';
 import Todoitem from '../views/Todoitem.vue';
+import User from '../views/User.vue';
 
 Vue.use(VueRouter)
 
@@ -33,7 +34,13 @@ Vue.use(VueRouter)
     path: '/calendar',
     name: 'Calendar',
     component: () => import('../views/Calendar.vue')
-  }
+  },
+  {
+    path: '/user/:id',
+    name: 'User',
+    component: User,
+    props: true
+  },
 ]
 
 const router = new VueRouter({

@@ -34,9 +34,7 @@ export default {
         });
     },
     beforeRouteLeave(to, from, next) {
-        console.log("before destroy");
         const { todoContainer } = this.$refs;
-
         Animation.out(todoContainer, next);
     },
 };
