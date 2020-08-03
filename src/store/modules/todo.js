@@ -2,13 +2,17 @@ import axios from "axios";
 
 export default {
     actions: {
-        async getRequestTodos(ctx) {
+        async getRequestTodos(ctx) {            
             try {
+                const user_id = this.getters.getUserId 
+
                 const response = await axios.get("http://localhost:3003/api/todos/", { 
-                  params: {
-                      author_id: '1'
+                    params: {
+                        author_id: `${user_id}`
                     }
-                  });
+                });
+
+                console.log(response)
 
                 ctx.commit('updateTodos', response.data);
 
@@ -16,10 +20,22 @@ export default {
                 console.error(error);
             }
         },
+        async getTodo(ctx, todo_id) {
+            try {
+                const response = await axios.get(`http://localhost:3003/api/todos/${todo_id}`);
+
+                const data = response.data
+                return data; 
+            } catch (error) {
+                console.error(error);
+            }
+        },
         async addNewTodo(ctx, newTodo) {
             try {
+                const user_id = this.getters.getUserId
+
                 await axios.post("http://localhost:3003/api/todos/", {
-                    author_id: 1,
+                    author_id: user_id,
                     title: newTodo.title,
                     description: newTodo.description,
                     status: newTodo.status
